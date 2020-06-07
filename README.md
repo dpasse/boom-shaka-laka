@@ -2,6 +2,11 @@
 
 -- using machine learning to format awful text files into readable versions
 
+#### Datasets:
+
+- [generate_columnar_dataset_poc.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/generate_columnar_dataset_poc.ipynb)
+  - end to end example to prove out a method to generate columnar datasets
+
 #### Tables:
 
 - [simple_columnar_poc.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/simple_columnar_poc.ipynb)
