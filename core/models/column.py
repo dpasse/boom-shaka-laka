@@ -11,6 +11,9 @@ class Column(object):
     max_label_length: int
     max_unit_length: int
     max_number_of_label_parts: int
+        
+    def column_length(self):
+        return self.max_unit_length + self.max_label_length
 
     def compress_column(self, labels: Iterator[str]) -> Iterator[str]:
         current_row_index = 0
