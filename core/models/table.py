@@ -7,12 +7,10 @@ class Table(object):
     max_number_of_labels: int
     columns: Iterator[Column]
 
-    def compress(self, column_values: Iterator[Iterator[str]]) -> Iterator[str]:
+    def compress(self, column_values: Iterator[Iterator[str]], tabs: int = 5) -> Iterator[str]:
         current_row_index = 0
         rows = [ ]
-        
-        tabs = 2
-        
+
         r_i = 0;
         while True:
             
