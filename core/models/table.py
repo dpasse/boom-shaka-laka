@@ -5,9 +5,10 @@ import re
 
 class Table(object):
     max_number_of_labels: int
+    n_spaces_between_columns: int
     columns: Iterator[Column]
 
-    def compress(self, column_values: Iterator[Iterator[str]], tabs: int = 5) -> Iterator[str]:
+    def compress(self, column_values: Iterator[Iterator[str]]) -> Iterator[str]:
         current_row_index = 0
         rows = [ ]
 
@@ -30,7 +31,7 @@ class Table(object):
                     
                 padding = column.column_length() - len(val)
                 val += ''.join([ ' ' for _ in range(padding)])
-                val += ''.join([ ' ' for _ in range(tabs)])
+                val += ''.join([ ' ' for _ in range(self.n_spaces_between_columns)])
                 row += val
                 
             rows.append(re.sub(r'[ ]+$', '', row))

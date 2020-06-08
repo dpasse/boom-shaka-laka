@@ -15,8 +15,9 @@ class MashupDatasetGenerator(object):
 
         for option in options:
             table = option['table']
-            dataset = option['dataset_generator'].get_data(table, n_instances = option['n_instances'])
-            
+            n_instances = option['n_instances']
+            dataset = option['dataset_generator'].get_data(table, n_instances = n_instances)
+
             if mashup is None:
                 mashup = dataset
             else:
