@@ -11,7 +11,7 @@ class DatasetGenerator(object):
 
         super().__init__()
 
-    def get_data(self, table: Table, n_instances: int) -> Tuple[str, str]:
+    def get_data(self, table: Table, n_instances: int) ->  Iterator[Tuple[str, str]]:
       dataset = []
       for _ in range(n_instances):
           train, target = self.table_generator.get_table(table)
