@@ -5,13 +5,12 @@ from .unit import Unit
 
 class Column(object):
     order: int
-    width: int
 
     min_label_length: int
     max_label_length: int
     max_unit_length: int
     max_number_of_label_parts: int
-        
+
     def column_length(self):
         return self.max_unit_length + self.max_label_length
 

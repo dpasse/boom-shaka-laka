@@ -10,15 +10,11 @@ class UnitGenerator(object):
 
         super().__init__()
 
-    def get_unit(self) -> Tuple[str, float]:
+    def get_unit(self) -> Unit:
         n_units = len(self.unit_lookup.keys())
-        unit = self.unit_lookup[np.random.randint(0, n_units)]
+        return self.unit_lookup[np.random.randint(0, n_units)]
 
-        min_value = unit.min_value
-        max_value = unit.max_value
-
-        value = np.random.randint(min_value, max_value)
+    def get_value(self, unit: Unit) -> float:
+        value = np.random.randint(unit.min_value, unit.max_value)
         value += np.random.rand()
-
-        value = np.around(value, 2)
-        return (unit.label, value)
+        return np.around(value, 2)

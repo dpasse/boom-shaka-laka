@@ -1,27 +1,31 @@
-import random
-import numpy as np
-from typing import Iterator, Tuple
-from ..models.table import Table
-from .table_generator import TableGenerator
+import pandas as pd
+from typing import Iterator
+from .dataset_generator import DatasetGenerator
 
 
 class MashupDatasetGenerator(object):
 
     def __init__(self):
+        self.dataset_generator = DatasetGenerator()
+
         super().__init__()
 
-    def get_data(self, options: Iterator[dict]) -> Iterator[Tuple[str, str]]:
-        mashup = None
+    def get_data(self, options: Iterator[dict]) -> pd.DataFrame:
+        mashup = []
 
         for option in options:
-            table = option['table']
             n_instances = option['n_instances']
-            dataset = option['dataset_generator'].get_data(table, n_instances = n_instances)
+            dataset = self.dataset_generator.get_data(
+                option['table_generator'],
+                n_instances = n_instances
+            )
 
-            if mashup is None:
-                mashup = dataset
-            else:
-                mashup = np.concatenate([mashup, dataset], axis = 1)
+            assert len(dataset) == n_instances, f'{len(dataset)} expected {n_instances}'
 
-        random.shuffle(mashup)
-        return mashup
+            for row in dataset:
+                mashup.append(row)
+
+        df = pd.DataFrame(mashup)
+        df.columns = ['table_id', 'table', 'target']
+
+        return df
