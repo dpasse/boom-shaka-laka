@@ -21,13 +21,14 @@ class ManyToManySameInputAndOutputVocabOrchestrator(object):
     def __init__(self, vocab: str, unit_lookup: Dict[int, str]):
         assert len(vocab) > 0
 
-        self.vocab = [ char for char in vocab ]
+        self.vocab =  [ char for char in vocab ]
 
-        system_vocab = ['\n', ' ', '<eol>'] + [ char for char in '0123456789.\/' ]
+        system_vocab = ['\n', ' ', ] + [ char for char in '0123456789.\/' ]
         for v in system_vocab:
             self.vocab.append(v)
 
-        self.vocab = list(sorted(set(self.vocab)))
+        ## want to make <eol> = 0
+        self.vocab = ['<eol>'] + list(sorted(set(self.vocab)))
 
         self.index_to_char = dict([ (i, c) for i, c in enumerate(self.vocab) ])
         self.char_to_index = dict([ (c, i) for i, c in enumerate(self.vocab) ])
@@ -35,7 +36,7 @@ class ManyToManySameInputAndOutputVocabOrchestrator(object):
         self.unit_lookup = unit_lookup
 
         label_generator_index_to_char = self.index_to_char.copy()
-        for key in system_vocab:
+        for key in (['<eol>'] + system_vocab):
             del label_generator_index_to_char[self.char_to_index[key]]
 
         self.generators = {
@@ -69,25 +70,17 @@ class ManyToManySameInputAndOutputVocabOrchestrator(object):
 
         ## 1. calculate the worst possible table,
         ##    - we want to fit a dataset, with different possible tables, into one where the input and output are the exact same.
-        table_height = 0
-        table_width = 0
-
-        for key in table_lookup:
+        table_height_width_lookup = {}
+        for key in table_lookup.keys():
             table = table_lookup[key]
-
             calculated_table_width, calculated_table_height = table.get_max_size()
-
-            if calculated_table_width > table_width:
-                table_width = calculated_table_width
-
-            if calculated_table_height > table_height:
-                table_height = calculated_table_height
-
-        target_total_chars = table_width * table_height
+            table_height_width_lookup[key] = (calculated_table_width, calculated_table_height, calculated_table_width * calculated_table_height)
 
         translated_dataset = []
         for index, row in dataset.iterrows():
             key = row['table_id']
+
+            table_width, table_height, target_total_chars = table_height_width_lookup[key]
 
             train = []
             table = table_lookup[key]
