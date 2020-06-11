@@ -10,12 +10,12 @@
 #### Tables:
 
 - [simple_columnar_poc.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/simple_columnar_poc.ipynb)
-  - end to end example to prove out a potential viable path
+  - end to end example to prove out a potential path
   - example focuses on a columnar table, where labels and values are in seperate columns
   - using LSTM to output a flatten, readable version
 
 - [simple_table_classification_poc.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/simple_table_classification_poc.ipynb)
-  - end to end example to prove out a potential viable path
+  - end to end example to prove out a potential path
   - example focuses on just 3 tables with different number of columns.
   - text is converted to an array of 0s and 1s
   - resulting matrix is feed through a simple 1D CNN
