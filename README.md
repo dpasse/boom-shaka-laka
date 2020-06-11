@@ -18,4 +18,4 @@
   - end to end example to prove out a potential path
   - example focuses on just 3 tables with different number of columns.
   - text is converted to an array of 0s and 1s
-  - resulting matrix is feed through a simple 1D CNN
+  - resulting matrix is feed through a simple 1D CNN, softmax to produce probability distribution
