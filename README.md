@@ -6,7 +6,7 @@
 
 - [generate_columnar_dataset_poc.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/generate_columnar_dataset_poc.ipynb)
   - end to end example to prove out a method to generate columnar datasets
-  
+
 - [build_table_datasets_v0.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/build_table_datasets_v0.ipynb)
   - end to end example to build out a potential train/dev/test dataset
   - tables keep track of label/unit combinations
@@ -24,3 +24,9 @@
   - example focuses on just 3 tables with different number of columns.
   - text is converted to an array of 0s and 1s
   - resulting matrix is feed through a simple 1D CNN, softmax to produce probability distribution
+
+- [simple_table_regression_poc.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/simple_table_regression_poc.ipynb)
+  - end to end example to prove out a potential path
+  - example focuses on just 3 tables with different number of columns.
+  - text is converted to an array of 0s and 1s
+  - resulting matrix is feed through a simple 1D CNN, predicts indexes to split the table on
