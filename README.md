@@ -12,7 +12,7 @@
   - tables keep track of label/unit combinations
   - random choice without replace is conducted to build out a column per training instance
 
-#### Tables:
+#### Models:
 
 - [simple_columnar_poc.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/simple_columnar_poc.ipynb)
   - end to end example to prove out a potential path
