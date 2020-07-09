@@ -1,7 +1,7 @@
 import re
 import uuid
 
-from typing import Iterator
+from typing import List
 from .column import Column
 
 
@@ -9,7 +9,7 @@ class Table(object):
     id: str
     max_number_of_labels: int ## per column
     n_spaces_between_columns: int
-    columns: Iterator[Column]
+    columns: List[Column]
 
     def __init__(self):
         self.id = uuid.uuid4().hex
@@ -45,7 +45,23 @@ class Table(object):
 
         return table_width, table_height
 
-    def compress(self, column_values: Iterator[Iterator[str]]) -> Iterator[str]:
+    def get_split_targets(self) -> List[int]:
+        targets: List[int] = []
+        if len(self.columns) <= 1:
+            return targets
+
+        previous_target = 0
+        for column in self.columns[:-1]:
+            target = column.max_label_length + column.max_unit_length + self.n_spaces_between_columns
+            targets.append(
+                previous_target + target
+            )
+
+            previous_target = target
+
+        return targets
+
+    def compress(self, column_values: List[List[str]]) -> List[str]:
         current_row_index = 0
         rows = [ ]
 

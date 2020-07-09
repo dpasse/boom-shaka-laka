@@ -30,3 +30,10 @@
   - example focuses on just 3 tables with different number of columns.
   - text is converted to an array of 0s and 1s
   - resulting matrix is feed through a simple 1D CNN, predicts indexes to split the table on
+
+- [simple_table_regression_many.ipynb](https://github.com/dpasse/boom-shaka-laka/tree/master/notebooks/tables/simple_table_regression_many.ipynb)
+  - end to end example to prove out a potential path
+  - example focuses on just 3 tables with 1000 instances split at 5%.
+  - text is converted to an array of 0s and 1s
+  - resulting matrix is feed through a simple 1D CNN and BI Directional LSTM, predicts indexes to split the table on
+  - two hold-out instances are presented after each model
